@@ -1,21 +1,20 @@
-# Dockerfile
-# Use an official Node.js runtime as a parent image (ARM64 variant for M1)
+# Use an official Node.js runtime as a parent image
 FROM node:14-alpine
 
-# Set the working directory inside the container
+# Set the working directory
 WORKDIR /usr/src/app
 
 # Copy package.json and package-lock.json
 COPY package*.json ./
 
-# Install application dependencies
+# Install app dependencies, including devDependencies
 RUN npm install
 
-# Copy the rest of the application code
+# Copy the app source code
 COPY . .
 
 # Expose port 3000
 EXPOSE 3000
 
-# Define the command to run the app
+# Command to run the app
 CMD ["node", "app.js"]
